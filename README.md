@@ -1003,7 +1003,7 @@ For cloudflare variables are
 - **run the damn containers** and now `http://whoami.whateverblablabla.org` is immediately changed to `https://whoami.whateverblablabla.org`
 
 # stuff to checkout
-  - [when file provider is used for managing docker containers](https://github.com/pamendoz/personalDockerCompose)
+  - [when everything is done in file provider](https://github.com/pamendoz/personalDockerCompose)
   - [ansible, docker and traefik](https://thoughtfuldragon.com/a-summary-of-how-i-automated-my-server-with-ansible-docker-and-traefik/)
+  - [traefik official site blog with good examples reads](https://containo.us/blog/)
   - [traefik v2 forums](https://community.containo.us/c/traefik/traefik-v2)
-  - ['traefik official site blog](https://containo.us/blog/)
