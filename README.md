@@ -29,8 +29,7 @@ chapters
 
 - **create traefik.yml**</br>
   This file contains so called static traefik configuration.</br>
-  In this basic example there is log level set, dashboard is enabled.
-  Entrypoint called `web` is defined at port 80. Docker provider is set and given docker socket</br>
+  In this basic example there are just few self-explanatory settings</br>
   Since exposedbydefault is set to false, a label `"traefik.enable=true"` will be needed
   for containers that should be routed by traefik.</br>
   This file will be passed to a docker container using bind mount,
