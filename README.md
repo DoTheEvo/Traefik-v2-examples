@@ -1,5 +1,7 @@
 # Traefik v2 </br>guide by examples
 
+*edit* - discovered caddy as regex proxy, seems super simple in my first try
+
 requirements
 
 - have docker running somewhere
@@ -29,7 +31,7 @@ chapters
 
 - **create traefik.yml**</br>
   This file contains so called static traefik configuration.</br>
-  In this basic example there are just few self-explanatory settings</br>
+  In this basic example there are just few self-explanatory settings.</br>
   Since exposedbydefault is set to false, a label `"traefik.enable=true"` will be needed
   for containers that should be routed by traefik.</br>
   This file will be passed to a docker container using bind mount,
@@ -941,7 +943,7 @@ For cloudflare variables are
   creates new middleware called `redirect-to-https`, type "redirectscheme"
   and assigns it scheme `https`.</br>
 
-  >\- "traefik.http.routers.redirect-https.rule=hostregexp(`{host:.+}`)"
+  >\- "traefik.http.routers.redirect-https.rule=hostregexp(\`{host:.+}\`)"
 
   creates new router called `redirect-https`, with a regex rule that
   catches any and every incoming request
