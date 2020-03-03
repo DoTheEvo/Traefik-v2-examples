@@ -1,11 +1,11 @@
 # Traefik v2 </br>guide by examples
 
-*edit* - discovered caddy as regex proxy, seems super simple in my first try
+*edit* - discovered caddy, seems super simple, [here](https://github.com/DoTheEvo/Caddy-v2-examples) is its guide.
 
 requirements
 
 - have docker running somewhere
-- have a domain `whateverblablabla.org`
+- have a domain `blabla.org`
 - use cloudflare to manage DNS of the domain
 - have 80/443 ports open
 
@@ -73,15 +73,18 @@ chapters
 
     `.env`
     ```
-    MY_DOMAIN=whateverblablabla.org
+    MY_DOMAIN=blabla.org
     DEFAULT_NETWORK=traefik_net
     ```
 
   *extra info:*</br>
-  command `docker-compose config` shows how compose will look
+  Command `docker-compose config` shows how compose will look
   with the variables filled in.
-  Also entering container with `docker container exec -it traefik sh`
-  and then `printenv` can be useful.
+  
+  *extra info2:*</br>
+  These variables are only filled in during the compose initial building of container.
+  If an env variable should be available also inside the running container, 
+  it needs to be declared in the `environment` section of the compose file.
 
 - **create traefik-docker-compose.yml file**.</br>
   It's a simple typical compose file.</br>
@@ -148,7 +151,7 @@ chapters
   > \- "traefik.http.routers.whoami.rule=Host(`whoami.$MY_DOMAIN`)"
 
   defines a rule for this `whoami` router, specifically that when url
-  equals `whoami.whateverblablabla.org` (the domain name comes from the `.env` file),
+  equals `whoami.blabla.org` (the domain name comes from the `.env` file),
   that it means for router to do its job and route it to a service.
   
   Nothing else is needed, traefik knows the rest from the fact that these labels
@@ -273,7 +276,7 @@ chapters
   Under providers theres a new `file` section and `traefik.yml` itself is set.</br>
   Then dynamic configuration stuff is added.</br>
   A router named `route-to-local-ip` with a simple subdomain hostname rule.
-  What fits that rule, in this case exact url `test.whateverblablabla.org`,
+  What fits that rule, in this case exact url `test.blabla.org`,
   is send to the loadbalancer service which just routes it a specific IP and specific port.
 
     `traefik.yml`
@@ -301,7 +304,7 @@ chapters
     http:
       routers:
         route-to-local-ip:
-          rule: "Host(`test.whateverblablabla.org`)"
+          rule: "Host(`test.blabla.org`)"
           service: route-to-local-ip-service
           priority: 1000
           entryPoints:
@@ -442,9 +445,9 @@ Example of an authentication middleware for any container.
   from LE. It is part of traefik.</br>
   `DNS` - servers on the internet, translate domain names in to ip address</br>
 
-  Traefik uses ACME to ask LE for a certificate for a specific domain, like `whateverblablabla.org`.
+  Traefik uses ACME to ask LE for a certificate for a specific domain, like `blabla.org`.
   LE answers with some random generated text that traefik puts at a specific place on the server.
-  LE then asks DNS internet servers for `whateverblablabla.org` and that points to some IP address.
+  LE then asks DNS internet servers for `blabla.org` and that points to some IP address.
   LE looks at that IP address through ports 80/443 for the file containing that random text.
 
   If it's there then this proves that whoever asked for the certificate controls both
@@ -617,16 +620,16 @@ and assigning certificate resolver named `lets-encr` to the existing router
   from LE. It is part of traefik.</br>
   `DNS` - servers on the internet, translate domain names in to ip address</br>
 
-  Traefik uses ACME to ask LE for a certificate for a specific domain, like `whateverblablabla.org`.
+  Traefik uses ACME to ask LE for a certificate for a specific domain, like `blabla.org`.
   LE answers with some random generated text that traefik puts as a new DNS TXT record.
-  LE then checks `whateverblablabla.org` DNS records to see if the text is there.
+  LE then checks `blabla.org` DNS records to see if the text is there.
   
   If it's there then this proves that whoever asked for the certificate controls the domain.
   Certificate is given and is valid for 3 months. Traefik will automatically try to renew
   when less than 30 days is remaining.
 
   Benefit over httpChallenge is ability to have wild card certificates.
-  These are certificates that validate all subdomains `*.whateverblablabla.org`</br>
+  These are certificates that validate all subdomains `*.blabla.org`</br>
   Also no ports are needed to be open.
 
   But traefik needs to be able to make these automated changes to DNS records,
@@ -717,7 +720,7 @@ For cloudflare variables are
 
   `.env`
   ```
-  MY_DOMAIN=whateverblablabla.org
+  MY_DOMAIN=blabla.org
   DEFAULT_NETWORK=traefik_net
   CF_API_EMAIL=whateverbastard@gmail.com
   CF_API_KEY=8d08c87dadb0f8f0e63efe84fb115b62e1abc
@@ -758,7 +761,7 @@ For cloudflare variables are
   - router's entryPoint is switched from `web` to `websecure`
   - certificate resolver named `lets-encr` assigned to the router
   - a label defining main domain that will get the certificate,
-    in this it is whoami.whateverblablabla.org, domain name pulled from `.env` file
+    in this it is whoami.blabla.org, domain name pulled from `.env` file
   
   `whoami-docker-compose.yml`
   ```
@@ -813,10 +816,10 @@ For cloudflare variables are
   fair enough</br>
   so for wildcard these labels go in to traefik compose.
   - same `lets-encr` certificateresolver is used as before, the one defined in traefik.yml
-  - the wildcard for subdomains(*.whateverblablabla.org) is set as the main domain to get certificate for
-  - the naked domain(just plain whateverblablabla.org) is set as sans(Subject Alternative Name)
+  - the wildcard for subdomains(*.blabla.org) is set as the main domain to get certificate for
+  - the naked domain(just plain blabla.org) is set as sans(Subject Alternative Name)
   
-  again, you do need `*.whateverblablabla.org` and `whateverblablabla.org` 
+  again, you do need `*.blabla.org` and `blabla.org` 
   set in your DNS control panel as A-record pointing to IP of traefik
 
   `traefik-docker-compose.yml`
@@ -896,7 +899,7 @@ For cloudflare variables are
           name: $DEFAULT_NETWORK
     ```
 
-  Here is apache but this time run on the naked domain `whateverblablabla.org`</br>
+  Here is apache but this time run on the naked domain `blabla.org`</br>
     
     `apache-docker-compose.yml`
     ```
@@ -1001,7 +1004,7 @@ For cloudflare variables are
         name: $DEFAULT_NETWORK
   ```
 
-- **run the damn containers** and now `http://whoami.whateverblablabla.org` is immediately changed to `https://whoami.whateverblablabla.org`
+- **run the damn containers** and now `http://whoami.blabla.org` is immediately changed to `https://whoami.blabla.org`
 
 # stuff to checkout
   - [when everything is done in file provider](https://github.com/pamendoz/personalDockerCompose)
