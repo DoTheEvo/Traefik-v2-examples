@@ -1,6 +1,11 @@
-# Traefik v2 </br>guide by examples
+# Traefik v2 
 
-*edit* - discovered caddy, seems super simple, [here](https://github.com/DoTheEvo/Caddy-v2-examples) is its guide.
+###### guide by examples
+
+![logo](https://i.imgur.com/yHvP7zM.png)
+
+*edit* - discovered caddy, seems simpler,
+[here](https://github.com/DoTheEvo/selfhosted-apps-docker/tree/master/caddy_v2) is its guide.
 
 requirements
 
@@ -78,10 +83,9 @@ chapters
     ```
 
   *extra info:*</br>
-  Command `docker-compose config` shows how compose will look
+  Command `docker-compose config` shows how the compose will look
   with the variables filled in.
   
-  *extra info2:*</br>
   These variables are only filled in during the compose initial building of container.
   If an env variable should be available also inside the running container, 
   it needs to be declared in the `environment` section of the compose file.
