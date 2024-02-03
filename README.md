@@ -116,8 +116,8 @@ chapters
 
     networks:
       default:
-        external:
-          name: $DEFAULT_NETWORK
+        name: $DEFAULT_NETWORK
+        external: true
     ```
 
 - **run traefik-docker-compose.yml**</br>
@@ -177,8 +177,8 @@ chapters
 
   networks:
     default:
-      external:
-        name: $DEFAULT_NETWORK
+      name: $DEFAULT_NETWORK
+      external: true
   ```
 
   `nginx-docker-compose.yml`
@@ -197,8 +197,8 @@ chapters
 
   networks:
     default:
-      external:
-        name: $DEFAULT_NETWORK
+      name: $DEFAULT_NETWORK
+      external: true
   ```
 
   `apache-docker-compose.yml`
@@ -217,8 +217,8 @@ chapters
 
   networks:
     default:
-      external:
-        name: $DEFAULT_NETWORK
+      name: $DEFAULT_NETWORK
+      external: true
   ```
 
   `portainer-docker-compose.yml`
@@ -240,8 +240,8 @@ chapters
 
   networks:
     default:
-      external:
-        name: $DEFAULT_NETWORK
+      name: $DEFAULT_NETWORK
+      external: true
 
   volumes:
     portainer_data:
@@ -371,8 +371,8 @@ Example of an authentication middleware for any container.
 
     networks:
       default:
-        external:
-          name: $DEFAULT_NETWORK
+        name: $DEFAULT_NETWORK
+        external: true
     ```
 
 - **add two labels to any container** that should have authentication</br>
@@ -403,8 +403,8 @@ Example of an authentication middleware for any container.
 
   networks:
     default:
-      external:
-        name: $DEFAULT_NETWORK
+      name: $DEFAULT_NETWORK
+      external: true
   ```
 
   `nginx-docker-compose.yml`
@@ -425,8 +425,8 @@ Example of an authentication middleware for any container.
 
   networks:
     default:
-      external:
-        name: $DEFAULT_NETWORK
+      name: $DEFAULT_NETWORK
+      external: true
   ```
 
 - **run the damn containers** and now there is login and password needed
@@ -552,8 +552,8 @@ Example of an authentication middleware for any container.
 
     networks:
       default:
-        external:
-          name: $DEFAULT_NETWORK
+        name: $DEFAULT_NETWORK
+        external: true
     ```
 
 - **add required labels to containers**</br>
@@ -578,8 +578,8 @@ and assigning certificate resolver named `lets-encr` to the existing router
 
     networks:
       default:
-        external:
-          name: $DEFAULT_NETWORK
+        name: $DEFAULT_NETWORK
+        external: true
     ```
 
     `nginx-docker-compose.yml`
@@ -599,8 +599,8 @@ and assigning certificate resolver named `lets-encr` to the existing router
 
     networks:
       default:
-        external:
-          name: $DEFAULT_NETWORK
+        name: $DEFAULT_NETWORK
+        external: true
     ```
 - **run the damn containers**</br>
   give it a minute</br>
@@ -755,8 +755,8 @@ For cloudflare variables are
 
     networks:
       default:
-        external:
-          name: $DEFAULT_NETWORK
+        name: $DEFAULT_NETWORK
+        external: true
     ```
 
 - **add required labels to containers**</br>
@@ -785,8 +785,8 @@ For cloudflare variables are
 
   networks:
     default:
-      external:
-        name: $DEFAULT_NETWORK
+      name: $DEFAULT_NETWORK
+      external: true
   ```
 
   `nginx-docker-compose.yml`
@@ -807,8 +807,8 @@ For cloudflare variables are
 
   networks:
     default:
-      external:
-        name: $DEFAULT_NETWORK
+      name: $DEFAULT_NETWORK
+      external: true
   ```
 - **run the damn containers**</br>
   `docker-compose -f traefik-docker-compose.yml up -d`</br>
@@ -852,8 +852,8 @@ For cloudflare variables are
 
   networks:
     default:
-      external:
-        name: $DEFAULT_NETWORK
+      name: $DEFAULT_NETWORK
+      external: true
   ```
 
   Now if a container wants to be accessible as a subdomain,
@@ -877,8 +877,8 @@ For cloudflare variables are
 
     networks:
       default:
-        external:
-          name: $DEFAULT_NETWORK
+        name: $DEFAULT_NETWORK
+        external: true
     ```
 
     `nginx-docker-compose.yml`
@@ -898,8 +898,8 @@ For cloudflare variables are
 
     networks:
       default:
-        external:
-          name: $DEFAULT_NETWORK
+        name: $DEFAULT_NETWORK
+        external: true
     ```
 
   Here is apache but this time run on the naked domain `example.com`</br>
@@ -921,8 +921,8 @@ For cloudflare variables are
 
     networks:
       default:
-        external:
-          name: $DEFAULT_NETWORK
+        name: $DEFAULT_NETWORK
+        external: true
     ```
 
 # #6 redirect http traffic to https
@@ -1003,8 +1003,8 @@ For cloudflare variables are
 
   networks:
     default:
-      external:
-        name: $DEFAULT_NETWORK
+      name: $DEFAULT_NETWORK
+      external: true
   ```
 
 - **run the damn containers** and now `http://whoami.example.com` is immediately changed to `https://whoami.example.com`
